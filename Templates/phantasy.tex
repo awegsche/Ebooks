@@ -1,0 +1,41 @@
+\documentclass[8pt]{scrbook}
+\usepackage[paperwidth=9cm, paperheight=12cm,left=.2cm, right=.2cm, top=0.7cm, bottom=.4cm,footskip=.3cm, headsep=.2cm]{geometry}
+
+\pretolerance=100
+\tolerance=7000
+
+\usepackage[pdfborder={0 0 0}, linkcolor=ed]{hyperref}
+\newcommand{\hlabel}{\phantomsection\label}
+
+\setlength{\parindent}{0pt}
+
+\usepackage{paracol}
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{polyglossia}
+\setmainlanguage{german}\renewcommand\thechapter{}
+\renewcommand\thepart{}
+\renewcommand\chaptername{}
+
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}\defaultfontfeatures{Mapping=tex-text,Ligatures=TeX}
+\setmainfont{Corbel}
+\setsansfont{Corbel}
+
+
+
+\usepackage{fancyhdr} %Paket laden
+\pagestyle{fancy}
+\usepackage{lastpage}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead[RO,RE]{\small\thepage / \pageref{LastPage}}
+%\fancyhead[LO]{\emph{\thetitle}}% odd page header and number to right top
+\fancyhead[LE,LO]{\nouppercase{\emph{\leftmark}}}
+\fancyfoot[L,R,C]{}
+\renewcommand{\headrulewidth}{0pt}% disable the underline of the header part
+
+\definecolor{lang2_color}{rgb}{.2,.2,.2}\begin{ document}
+\tableofcontents
+\newpage
