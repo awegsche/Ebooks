@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    stilform.cpp
+    stilform.cpp \
+    logger.cpp
 
 HEADERS  += mainwindow.h \
-    stilform.h
+    stilform.h \
+    logger.h
 
 FORMS    += mainwindow.ui \
     stilform.ui

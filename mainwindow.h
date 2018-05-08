@@ -35,6 +35,8 @@ private slots:
 
     void ListenToLog(const QString &message, const LoggerInterface *sender, int level);
 
+    void on_tableFormats_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 };

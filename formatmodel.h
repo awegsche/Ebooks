@@ -8,6 +8,8 @@ class FormatModel : public QAbstractItemModel
 {
 private:
     LatexBook* _book;
+
+
 public:
     FormatModel(LatexBook* book);
 

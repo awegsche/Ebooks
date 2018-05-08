@@ -105,3 +105,11 @@ void MainWindow::ListenToLog(const QString &message, const LoggerInterface *send
 {
     ui->textLog->append(message);
 }
+
+void MainWindow::on_tableFormats_doubleClicked(const QModelIndex &index)
+{
+    QString key = ui->tableFormats->model()->data(index, FormatModel::GetKeyRole);
+    auto format = ((FormatModel*)ui->tableFormats->model())->get_format(key);
+
+    ui->plainEditBefore->document()->setHtml(format.get_before());
+}
