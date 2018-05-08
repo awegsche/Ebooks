@@ -34,5 +34,6 @@ const FormatVorlage Chapter("\\chapter{", "}");
 const FormatVorlage Section("\\section{", "}");
 const FormatVorlage Emph("\\emph{", "}");
 const FormatVorlage Empty("", "");
+const FormatVorlage Bold("\\textbf{", "}");
 }
 #endif // FORMATVORLAGE_H

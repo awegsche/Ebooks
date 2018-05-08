@@ -29,8 +29,8 @@ public:
 
     void loadFiles(Book* book);
     void toggleSourceFile(int index) {
-        auto f = _manifest[_spine[index]];
-        f._checked = !f._checked;
+        auto f = &_manifest[_spine[index]];
+        f->_checked = !f->_checked;
     }
 
 private:

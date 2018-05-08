@@ -76,5 +76,18 @@ void MainWindow::on_treeView_clicked(const QModelIndex &index)
 
 void MainWindow::on_tableFiles_doubleClicked(const QModelIndex &index)
 {
+    auto filename = ui->tableFiles->model()->data(index, Book::GiveItemRole);
+    ui->textBrowser->setHtml("file selected");
+
+}
+
+void MainWindow::on_tableFormats_clicked(const QModelIndex &index)
+{
+}
+
+void MainWindow::on_tableFiles_clicked(const QModelIndex &index)
+{
+    ((FileModel*)ui->tableFiles->model())->click_on_file(index);
+
 
 }

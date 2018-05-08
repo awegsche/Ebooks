@@ -30,6 +30,7 @@ int FormatModel::columnCount(const QModelIndex &parent) const
     return 2;
 }
 
+
 QVariant FormatModel::data(const QModelIndex &index, int role) const
 {
     switch(role) {
@@ -43,4 +44,9 @@ QVariant FormatModel::data(const QModelIndex &index, int role) const
         return _book->_formate.keys().at(index.row());
     }
     return QVariant();
+}
+
+FormatVorlage FormatModel::get_format(const QString &key) const
+{
+   return _book->_formate[key];
 }

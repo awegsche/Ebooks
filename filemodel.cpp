@@ -44,10 +44,17 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
             }
         case Qt::CheckStateRole:
             if (index.column() == 0)
-                return  _directory->_manifest[_directory->_spine[index.row()]]._checked;
-        case CheckRole:
-           _directory->toggleSourceFile(index.row());
+                return  _directory->_manifest[_directory->_spine[index.row()]]._checked ? Qt::Checked : Qt::Unchecked;
+        case Book::GiveItemRole:
+            return _directory->_manifest[_directory->_spine[index.row()]]._filename;
         }
     }
     return QVariant();
+}
+
+void FileModel::click_on_file(const QModelIndex &index)
+{
+
+    _directory->toggleSourceFile(index.row());
+    emit dataChanged(index, index);
 }

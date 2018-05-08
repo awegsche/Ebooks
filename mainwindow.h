@@ -28,6 +28,10 @@ private slots:
 
     void on_tableFiles_doubleClicked(const QModelIndex &index);
 
+    void on_tableFormats_clicked(const QModelIndex &index);
+
+    void on_tableFiles_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 };
