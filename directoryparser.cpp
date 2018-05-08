@@ -17,12 +17,14 @@ void DirectoryParser::readFDirectory(const QString &dir)
     // please delete soon
     QXmlStreamReader xml;
     QDir directory(dir);
-    auto list = directory.entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    auto list = directory.entryInfoList(QDir::AllDirs | QDir::NoDotDot);
+    emit log("Start reading source directory", this);
 
 
     for (QFileInfo fn : list) {
 
         if (fn.fileName() == "OEBPS") {
+            emit log("OEPS found", this);
             QFile content(fn.absoluteFilePath() + "/content.opf");
 
             if (!content.open(QIODevice::ReadOnly)) {
@@ -56,6 +58,7 @@ void DirectoryParser::readFDirectory(const QString &dir)
 // Loads the files into memory
 void DirectoryParser::loadFiles(Book *book)
 {
+    emit log("Loading files into memory", this);
     for (QString idref : _spine) {
         XhtmlLoader::load(_directory + "/" + _manifest[idref]._filename, book);
     }
@@ -77,6 +80,8 @@ void DirectoryParser::readManifest(QXmlStreamReader &xml)
             this->_manifest.insert(xml.attributes().value("id").toString(),
                                    SourceFile(xml.attributes().value("href").toString(), true));
     }
+    emit log(QString("got manifest. %1 entries")
+             .arg(QString::number(this->_manifest.size())), this);
 }
 
 void DirectoryParser::readSpine(QXmlStreamReader &xml)
@@ -88,6 +93,13 @@ void DirectoryParser::readSpine(QXmlStreamReader &xml)
         if (xml.isStartElement() && xml.name() == "itemref")
             this->_spine << xml.attributes().value("idref").toString();
     }
+    emit log(QString("got spine. %1 entries")
+             .arg(QString::number(this->_spine.size())), this);
+}
+
+QString DirectoryParser::toString()
+{
+   return "Directory Parser";
 }
 
 SourceFile::SourceFile()

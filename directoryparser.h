@@ -1,6 +1,7 @@
 #ifndef DIRECTORYPARSER_H
 #define DIRECTORYPARSER_H
 
+#include "logger.h"
 #include "book.h"
 
 #include <QString>
@@ -15,7 +16,7 @@ struct SourceFile
     QString _filename;
 };
 
-class DirectoryParser
+class DirectoryParser : public LoggerInterface
 {
 public:
     QMap<QString, SourceFile> _manifest;
@@ -38,6 +39,10 @@ private:
     void readManifest(QXmlStreamReader &xml);
     void readSpine(QXmlStreamReader &xml);
 
+
+    // LoggerInterface interface
+public:
+    QString toString() Q_DECL_OVERRIDE;
 };
 
 #endif // DIRECTORYPARSER_H

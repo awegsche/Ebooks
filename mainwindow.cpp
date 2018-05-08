@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include <QByteArray>
-#include <QtZlib/zlib.h>
+//#include <QtZlib/zlib.h>
 #include <QXmlStreamReader>
 
 #include "directoryparser.h"
@@ -31,7 +31,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (LOAD_LAPTOP) {
         DirectoryParser *p = new DirectoryParser();
+#ifdef WINHOME
         QString filename = "G:/Data/Ebooks/Simmons, Dan - [Hyperion-Cantos 1] - Hyperion (3-453-13304-8)";
+#else
+        QString filename = "/home/awegsche/Documents/Ebooks/Brooks, Terry - Das Schwert Von Shannara (2000, Goldmann, 3442238285).epub_FILES";
+#endif
+
+        QObject::connect(
+                    p, SIGNAL(log(QString,const LoggerInterface*,int)),
+                    this, SLOT(ListenToLog(QString,const LoggerInterface*,int)));
+
         //QString filename = "F:/Ebooks/Schaetzing, Frank/Breaking News";
         p->readFDirectory(filename);
         _openBook = new Book();
@@ -90,4 +99,9 @@ void MainWindow::on_tableFiles_clicked(const QModelIndex &index)
     ((FileModel*)ui->tableFiles->model())->click_on_file(index);
 
 
+}
+
+void MainWindow::ListenToLog(const QString &message, const LoggerInterface *sender, int level)
+{
+    ui->textLog->append(message);
 }

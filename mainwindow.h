@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <logger.h>
 #include <QMainWindow>
 #include <book.h>
 #include "latexbook.h"
@@ -31,6 +32,8 @@ private slots:
     void on_tableFormats_clicked(const QModelIndex &index);
 
     void on_tableFiles_clicked(const QModelIndex &index);
+
+    void ListenToLog(const QString &message, const LoggerInterface *sender, int level);
 
 private:
     Ui::MainWindow *ui;
