@@ -26,6 +26,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tabStil->setLayout(new QVBoxLayout());
     ui->tabStil->layout()->addWidget(new StilForm(templ, this));
 
+    _selected_format_key = -1;
+
+    _predefined_formats.insert("EMPTY", Formats::Empty);
+    ui->listPredefinedFormats->addItem("EMPTY");
+    _predefined_formats.insert("Chapter", Formats::Chapter);
+    ui->listPredefinedFormats->addItem("Chapter");
+    _predefined_formats.insert("Section", Formats::Section);
+    ui->listPredefinedFormats->addItem("Section");
+    _predefined_formats.insert("bold", Formats::Bold);
+    ui->listPredefinedFormats->addItem("bold");
+    _predefined_formats.insert("emph", Formats::Emph);
+    ui->listPredefinedFormats->addItem("emph");
+
     ui->textBrowser->document()->setDefaultStyleSheet(
                 QString(".p-display { padding-left=12pt; }\n"));
 
@@ -108,8 +121,40 @@ void MainWindow::ListenToLog(const QString &message, const LoggerInterface *send
 
 void MainWindow::on_tableFormats_doubleClicked(const QModelIndex &index)
 {
-    QString key = ui->tableFormats->model()->data(index, FormatModel::GetKeyRole);
-    auto format = ((FormatModel*)ui->tableFormats->model())->get_format(key);
+    _selected_format_key = ui->tableFormats->model()->data(index, FormatModel::GetKeyRole).toString();
+    auto format = _latex_book->_formate[_selected_format_key];
 
-    ui->plainEditBefore->document()->setHtml(format.get_before());
+    ui->plainEditBefore->document()->setHtml(format->get_before());
+    auto first_element = _openBook->get_element_by_format(_selected_format_key);
+    if (first_element){
+        ui->browseUsage->setHtml(first_element->get_text());
+        _formatindex = first_element->get_index();
+    }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    if (_selected_format_key == -1)
+        return;
+    auto first_element = _openBook->get_element_by_format(_selected_format_key, _formatindex + 1);
+    if (first_element){
+        ui->browseUsage->setHtml(first_element->get_text());
+        _formatindex = first_element->get_index();
+    }
+
+}
+
+void MainWindow::on_listPredefinedFormats_itemDoubleClicked(QListWidgetItem *item)
+{
+    if (_selected_format_key == -1)
+        return;
+    auto getpredef = _predefined_formats[item->text()];
+
+    ui->plainEditBefore->document()->setHtml(getpredef.get_before());
+    ui->plainEditAfter->document()->setHtml(getpredef.get_after());
+}
+
+void MainWindow::on_buttonUpdateFormat_clicked()
+{
+
 }

@@ -13,7 +13,7 @@ private:
     Book *_book;
 
 public:
-    QMap<QString, FormatVorlage> _formate;
+    QMap<QString, FormatVorlage*> _formate;
 
 public:
     LatexBook(Book* book);
@@ -21,6 +21,8 @@ public:
     void setup_formate();
 
     void convert_latex(const LatexTemplate* t, const QString &filename);
+
+    void set_format(const FormatVorlage *orig)
 };
 
 #endif // LATEXBOOK_H

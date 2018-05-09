@@ -46,7 +46,7 @@ QVariant FormatModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-FormatVorlage FormatModel::get_format(const QString &key) const
+FormatVorlage *FormatModel::get_format(const QString &key) const
 {
    return _book->_formate[key];
 }

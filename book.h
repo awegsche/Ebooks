@@ -39,6 +39,12 @@ public:
     int element_count() const {
         return _elements.size();
     }
+    EpubElement *get_element_by_format(const QString &key, const int start = 0) {
+        for(int i = start; i < _elements.size(); i++)
+            if (_elements[i]->get_class() == key)
+                return _elements[i];
+        return nullptr;
+    }
 };
 
 #endif // BOOK_H

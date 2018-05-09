@@ -18,6 +18,10 @@ class MainWindow : public QMainWindow
     Book *_openBook;
     LatexBook *_latex_book;
 
+    int _formatindex = 0;
+    QString _selected_format_key;
+    QMap<QString, FormatVorlage> _predefined_formats;
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -36,6 +40,12 @@ private slots:
     void ListenToLog(const QString &message, const LoggerInterface *sender, int level);
 
     void on_tableFormats_doubleClicked(const QModelIndex &index);
+
+    void on_pushButton_clicked();
+
+    void on_listPredefinedFormats_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_buttonUpdateFormat_clicked();
 
 private:
     Ui::MainWindow *ui;

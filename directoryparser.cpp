@@ -18,37 +18,34 @@ void DirectoryParser::readFDirectory(const QString &dir)
     QXmlStreamReader xml;
     QDir directory(dir);
     auto list = directory.entryInfoList(QDir::AllDirs | QDir::NoDotDot);
-    emit log("Start reading source directory", this);
+    emit log(QString("Start reading source directory %1").arg(dir), this);
 
 
     for (QFileInfo fn : list) {
+        emit log(fn.fileName(), this);
+        QFile content(fn.absoluteFilePath() + "/content.opf");
 
-        if (fn.fileName() == "OEBPS") {
-            emit log("OEPS found", this);
-            QFile content(fn.absoluteFilePath() + "/content.opf");
+        if (!content.open(QIODevice::ReadOnly)) {
 
-            if (!content.open(QIODevice::ReadOnly)) {
+            continue;
+        }
+        _directory = fn.absoluteFilePath();
 
-                continue;
-            }
-            _directory = fn.absoluteFilePath();
+        xml.setDevice(&content);
 
-            xml.setDevice(&content);
+        while(!xml.atEnd()) {
+            auto ttype = xml.readNext();
 
-            while(!xml.atEnd()) {
-                auto ttype = xml.readNext();
+            if (ttype == QXmlStreamReader::StartElement)
+            {
+                QString name = xml.name().toString();
+                if (name == "metadata")
+                    readMetadata(xml);
+                else if (name == "manifest")
+                    readManifest(xml);
+                else if (name == "spine")
+                    readSpine(xml);
 
-                if (ttype == QXmlStreamReader::StartElement)
-                {
-                    QString name = xml.name().toString();
-                    if (name == "metadata")
-                        readMetadata(xml);
-                    else if (name == "manifest")
-                        readManifest(xml);
-                    else if (name == "spine")
-                        readSpine(xml);
-
-                }
             }
         }
     }
