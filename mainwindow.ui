@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>570</height>
+    <width>852</width>
+    <height>578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,15 +24,15 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>270</width>
-         <height>423</height>
+         <width>274</width>
+         <height>426</height>
         </rect>
        </property>
        <attribute name="label">
@@ -49,8 +49,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>270</width>
-         <height>423</height>
+         <width>274</width>
+         <height>426</height>
         </rect>
        </property>
        <attribute name="label">
@@ -74,8 +74,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>270</width>
-         <height>423</height>
+         <width>274</width>
+         <height>426</height>
         </rect>
        </property>
        <attribute name="label">
@@ -98,7 +98,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -114,6 +114,66 @@
        <attribute name="title">
         <string>Format</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Format:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>class / identifier:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Update</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Before:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="3">
+         <widget class="QPlainTextEdit" name="plainEditBefore"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>After:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="3">
+         <widget class="QPlainTextEdit" name="plainEditAfter"/>
+        </item>
+        <item row="3" column="2">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Previous</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Next</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="4">
+         <widget class="QTextBrowser" name="browseUsage"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -139,8 +199,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
-     <height>19</height>
+     <width>852</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuStil">

@@ -22,6 +22,7 @@ void XhtmlLoader::load(const QString &filename, Book *book)
         if (r.isStartElement() && r.name() == "body")
             XhtmlLoader::readBody(&r, book);
     }
+    file.close();
 }
 
 void XhtmlLoader::readBody(QXmlStreamReader *reader, Book *book)
